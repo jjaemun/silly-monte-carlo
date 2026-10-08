@@ -16,7 +16,12 @@ class Sample(object):
 
     grid: ARRAY
     sims: ARRAY
- 
+
+    # Notes
+    #
+    # We can fully define a simulation period by the values
+    # realized, `sims`, and the corresponding timegrid, `grid`.
+
     @property
     def mean(self) -> ARRAY:
         return self.sims.mean(axis = 0)
