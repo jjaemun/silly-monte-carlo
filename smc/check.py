@@ -17,5 +17,5 @@ def cmplt(lhs: float, rhs: float) -> None:
 
     ''' Checks that `lhs` is less than `rhs`. '''
 
-    if (lhs > rhs):
+    if (lhs >= rhs):
         raise ValueError(fmt.msg(err.Err.CMPLT, lhs, rhs))
