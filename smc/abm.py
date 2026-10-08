@@ -36,7 +36,7 @@ class ArithmeticBrownianMotion(simulator.Simulator):
 
         increment = (t - s) / self.timesteps
         gaussians = (numpy.sqrt(increment) 
-                        * numpy.random.normal((self.paths, self.timesteps - 1)))
+                        * numpy.random.normal(size = (self.paths, self.timesteps)))
         
         drift = self.mu * increment
         diffusion = self.sigma * gaussians
