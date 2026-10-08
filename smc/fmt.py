@@ -25,3 +25,11 @@ def msg(e: err.Err, *args: ...) -> str:
             
             (v, ) = args
             return f'Expected positive integer, got {v!r}.'
+
+        case (err.Err.CMPLT):
+
+            # In the `CMPLT` case, we expect to unpack the two
+            # values needed for the comparison operator.
+
+            (lhs, rhs, ) = args
+            return f'Requires that {lhs!r} is less than {rhs!r}.'

@@ -11,3 +11,11 @@ def positive_integer(obj: typing.Any) -> None:
 
     if not (isinstance(obj, int) and obj > 0):
         raise ValueError(fmt.msg(err.Err.POSITIVE_INTEGER, obj))
+
+
+def cmplt(lhs: float, rhs: float) -> None:
+
+    ''' Checks that `lhs` is less than `rhs`. '''
+
+    if (lhs > rhs):
+        raise ValueError(fmt.msg(err.Err.CMPLT, lhs, rhs))
