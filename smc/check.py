@@ -10,4 +10,4 @@ def positive_integer(any: typing.Any) -> None:
     ''' Check that `value` is a positive integer. '''
 
     if not (isinstance(any, int) and any > 0):
-        raise ValueError(fmt.msg(err.Error.POSITIVE_INTEGER, any))
+        raise ValueError(fmt.msg(err.Err.POSITIVE_INTEGER, any))
