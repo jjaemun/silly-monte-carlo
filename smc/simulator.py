@@ -9,14 +9,6 @@ class Simulator(abc.ABC):
     ''' Abstract base class for monte carlo 
             sde simulations.'''
 
-    def __init__(self, timesteps: int, paths: int):
-        assert isinstance(timesteps, int) and timesteps > 0
-        assert isinstance(paths, int) and paths > 0
-
-        self.timesteps = timesteps
-        self.paths = paths
-
-
     @abc.abstractmethod
     def simulate(self, s: float, t: float) -> ...:
 
