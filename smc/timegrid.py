@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 
 
-from dataclasses import dataclass
+from . import check
+
+
 import numpy
 
-from . import check
+
+from typing import ClassVar
+from dataclasses import dataclass
 
 
 @dataclass(frozen=True)

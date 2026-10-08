@@ -12,10 +12,8 @@ class Sample(object):
 
     ''' Result type for a monte carlo simulation. '''
     
-    ARRAY: ClassVar = numpy.ndarray
-
-    grid: ARRAY
-    sims: ARRAY
+    grid: numpy.ndarray 
+    sims: numpy.ndarray
 
     # Notes
     #
@@ -23,9 +21,9 @@ class Sample(object):
     # realized, `sims`, and the corresponding timegrid, `grid`.
 
     @property
-    def mean(self) -> ARRAY:
+    def mean(self):
         return self.sims.mean(axis = 0)
 
     @property
-    def variance(self) -> ARRAY:
+    def variance(self):
         return self.sims.var(axis = 0)
