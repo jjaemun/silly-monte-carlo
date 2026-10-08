@@ -19,4 +19,9 @@ def msg(e: err.Err, *args: ...) -> str:
 
     match (e):
         case (err.Err.POSITIVE_INTEGER):
-            return f'Expected positive integer, got {args[0]!r}'
+
+            # In the `POSITIVE_INTEGER` case, we expect to upack
+            # just one value. 
+            
+            (v, _) = args
+            return f'Expected positive integer, got {v!r}.'
