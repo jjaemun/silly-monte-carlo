@@ -14,7 +14,7 @@ class Sample(object):
     
     ARRAY: ClassVar = numpy.ndarray
 
-    timegrid: ARRAY
+    grid: ARRAY
     sims: ARRAY
  
     @property
