@@ -23,5 +23,5 @@ def msg(e: err.Err, *args: ...) -> str:
             # In the `POSITIVE_INTEGER` case, we expect to upack
             # just one value. 
             
-            (v, _) = args
+            (v, ) = args
             return f'Expected positive integer, got {v!r}.'
