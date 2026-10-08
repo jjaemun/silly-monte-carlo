@@ -3,20 +3,24 @@
 
 import numpy
 
+from typing import ClassVar
+from dataclasses import dataclass
 
+
+@dataclass(frozen = True)
 class Sample(object):
 
     ''' Result type for a monte carlo simulation. '''
+    
+    ARRAY: ClassVar = numpy.ndarray
 
-    def __init__(self, timegrid: numpy.ndarray, 
-                       sims: numpy.ndarray):
-        self.timegrid = timegrid
-        self.sims = sims
-  
+    timegrid: ARRAY
+    sims: ARRAY
+ 
     @property
-    def mean(self):
+    def mean(self) -> ARRAY:
         return self.sims.mean(axis = 0)
 
     @property
-    def variance(self):
+    def variance(self) -> ARRAY:
         return self.sims.var(axis = 0)
