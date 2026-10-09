@@ -5,7 +5,6 @@ import numpy
 from . import (check, simulator, sample, seeding, timegrid)
 
 
-
 class ArithmeticBrownianMotion(simulator.Simulator):
 
     ''' Arithmetic Brownian motion (abm) monte 
