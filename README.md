@@ -75,21 +75,11 @@ such that `s` < `t`.
 
 An intentional design choice was introducing optional seeding in the `simulation` method. 
 There are two reasons for this:
+
     * allows reproducibility if we do decide to seed the `rng`; and,
+
     * it signals that we are dealing with random number generation upon 
       calling this function.
-    
-The `simulate` method returns a `Sample`, which stores the time grid and simulated
-paths. The empirical first and second moments are exposed from the sample itself.
-
-```python
-sample = sim.simulate(0.0, 1.0, seed=0)
-
-sample.grid.values
-sample.sims
-sample.mean
-sample.variance
-```
 
 The model remains responsible for the theoretical quantities. This separation is
 deliberate. A `Sample` is a realized Monte Carlo object; `mean`, `variance`, and
