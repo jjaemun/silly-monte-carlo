@@ -33,3 +33,10 @@ def msg(e: err.Err, *args: ...) -> str:
 
             (lhs, rhs, ) = args
             return f'Requires that {lhs!r} is less than {rhs!r}.'
+
+        case (_):
+
+            # If we cannot recognize the error code `e`, simply
+            # return a generic message.
+
+            return f'Unknown error code {_!r}.'
