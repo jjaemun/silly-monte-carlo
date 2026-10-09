@@ -6,7 +6,7 @@
 
 ## Installation
 
-As prerequisites, you will need git, and a suitable python version. 
+As prerequisites, you will need git, and a suitable python version (`>=3.11`). 
 
 ```bash
 # checkout repository.
@@ -24,37 +24,49 @@ The package is set up to dynamically install dependencies through the
 `requirements.txt` file. The editable install is sufficient to make available 
 the local package and its runtime dependencies.
 
-## Introduction
+## API Surface
 
-We begin with the simplest usage.
+The `api` is quite small, and thus we only need to understand a few
+elements to use the capabilities provided.
+
+### Simulators
+
+This is the core interface to generate `monte-carlo` paths. Its best that we
+think of simulators as the source of truth for the stochastic models. The
+properties they describe are the following:
 
 ```python
-from smc import abm, plots
 
+class Simulator(abc.abstractmethod):
+    
+    # `simulate` is the monte carlo path simulation entry point.
+    def simulate(self, s: float, t: float,
+                                 seed: Seed = None) -> sample.Sample:
+        # (...) 
 
-sim = abm.ArithmeticBrownianMotion(
-    spot=0.0,
-    mu=0.05,
-    sigma=0.2,
-    timesteps=128,
-    paths=256,
-)
+    # `mean` computes the theoretical expection over the 
+    # simulation interval in [s, t].
+    def mean(self, s: float, t: float) -> numpy.ndarray:
+        # (...) 
 
-fig, _ = plots.simulation_summary(sim, 0.0, 1.0)
-plots.show(fig)
+    # `variance` computes the theoretical dispersion over the 
+    # simulation interval in [s, t].
+    def mean(self, s: float, t: float) -> numpy.ndarray:
+        # (...) 
+
+    # `variance` computes the theoretical autocovariance matrix
+    # over the simulation interval in [s, t].
+    def autocovariance(self, s: float, t: float) -> numpy.ndarray:
+        # (...) 
 ```
 
-This generates a three-panel summary: simulated paths, empirical and theoretical
-mean, and empirical and theoretical variance.
-
-The same example can be run directly:
-
-```bash
-python examples/abm.py
-```
-
-## The Contract
-
+    # `s` and `t` are the simulation interval boundaries. 
+    # Logically they should be ordered such that `s` < `t`.
+    #
+    # An intentional design choice is introducing the optional
+    # random state management (seeding) placing to pass
+    # the random sta
+    
 Each simulator implements a small common interface:
 
 ```python

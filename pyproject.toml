@@ -11,6 +11,5 @@ dependencies = {file = ["requirements.txt"]}
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["smc*"]
+[tool.setuptools]
+packages = ["smc"]
