@@ -79,16 +79,16 @@ There are two reasons for this:
     * allows reproducibility if we do decide to seed the `rng`; and,
 
     * it signals that we are dealing with random number generation upon 
-      calling this function.
+      calling this function without taking ownership of the generators.
 
 The model remains responsible for the theoretical quantities. This separation is
 deliberate. A `Sample` is a realized Monte Carlo object; `mean`, `variance`, and
 `autocovariance` are deterministic model functions.
 ### TimeGrid
 
-`TimeGrid` is the small object responsible for encoding the simulation
-interval. Given boundaries `s`, `t`, and a number of `timesteps`, it provides
-the grid values and the corresponding increment.
+`TimeGrid` models simulation time intervals. Given boundaries `s`, `t`, 
+and a number of `timesteps`, it provides the grid values and the corresponding 
+increment.
 
 ```python
 grid = TimeGrid(0.0, 1.0, 256)
@@ -96,10 +96,6 @@ grid = TimeGrid(0.0, 1.0, 256)
 grid.increment
 grid.values
 ```
-
-The object exists mostly to prevent small indexing mistakes. In particular,
-`timesteps` is interpreted as the number of increments, not the number of
-points in the grid. Therefore, `grid.values` has length `timesteps + 1`.
 
 ### Sample
 
@@ -114,10 +110,11 @@ sample.mean
 sample.variance
 ```
 
-It stores realized paths together with the `TimeGrid` on which they were
+It stores realized paths along the `TimeGrid` on which they are
 generated. Empirical moments are computed directly from the simulated paths.
 The distinction is important: `sample.mean` is empirical, while `sim.mean`
-is theoretical.
+is theoretical. This way, `simulators` remain in charge of theoretical moments
+but never own or know anything about the results they produce.
 
 ## Models
 
