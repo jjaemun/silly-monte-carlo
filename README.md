@@ -69,22 +69,16 @@ class Simulator(abc.abstractmethod):
         (...)
 ```
 
-    # `s` and `t` are the simulation interval boundaries. 
-    # Logically they should be ordered such that `s` < `t`.
-    #
-    # An intentional design choice is introducing the optional
-    # random state management (seeding) placing to pass
-    # the random sta
+In all methods above `s` and `t` are the simulation interval boundaries. 
+And so logically they should be (and we check that they are) ordered 
+such that `s` < `t`.
+
+An intentional design choice is introducing the optional random state 
+management (seeding) in the `simulation` method. There are two reasons for this.
+    * allows reproducibility if we do decide to seed the `rng`; and,
+    * it signals that we are dealing with random number generation upon 
+      calling this function.
     
-Each simulator implements a small common interface:
-
-```python
-simulate(s, t, seed=None)
-mean(s, t)
-variance(s, t)
-autocovariance(s, t)
-```
-
 The `simulate` method returns a `Sample`, which stores the time grid and simulated
 paths. The empirical first and second moments are exposed from the sample itself.
 
