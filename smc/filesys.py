@@ -14,11 +14,3 @@ class extension(enum.Enum):
 
     pdf = '.pdf'
     png = '.png'
-
-
-def resolve(path: Union[str, os.PathLike]) -> bool:
-
-    ''' Checks whether `path` exists. '''
-
-    if not os.path.exists(path):
-        ...
