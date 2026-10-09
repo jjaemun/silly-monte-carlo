@@ -81,9 +81,6 @@ There are two reasons for this:
     * it signals that we are dealing with random number generation upon 
       calling this function without taking ownership of the generators.
 
-The model remains responsible for the theoretical quantities. This separation is
-deliberate. A `Sample` is a realized Monte Carlo object; `mean`, `variance`, and
-`autocovariance` are deterministic model functions.
 ### TimeGrid
 
 `TimeGrid` models simulation time intervals. Given boundaries `s`, `t`, 
@@ -99,7 +96,7 @@ grid.values
 
 ### Sample
 
-`Sample` is the result type returned by `simulate`.
+`Sample` is the simulation result type.
 
 ```python
 sample = sim.simulate(0.0, 1.0, seed=0)
@@ -110,10 +107,9 @@ sample.mean
 sample.variance
 ```
 
-It stores realized paths along the `TimeGrid` on which they are
+It stores realized paths along with the `TimeGrid` on which they are
 generated. Empirical moments are computed directly from the simulated paths.
-The distinction is important: `sample.mean` is empirical, while `sim.mean`
-is theoretical. This way, `simulators` remain in charge of theoretical moments
+This way, `simulators` remain in charge of theoretical moments
 but never own or know anything about the results they produce.
 
 ## Models
