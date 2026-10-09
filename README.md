@@ -2,33 +2,27 @@
 
 ## Overview
 
-`silly-monte-carlo` is a small playground for Monte Carlo simulation of simple
-stochastic processes. The project is intentionally narrow. Rather than attempting
-to become a general modelling library, it focuses on a basic validation loop:
-simulate sample paths, compute empirical moments, and compare them against the
-corresponding theoretical quantities.
-
-The first model implemented is arithmetic Brownian motion. This is not a hard
-model. That is precisely the point. The construction is simple enough that any
-failure in indexing, time grids, empirical moments, or plotting becomes visible
-immediately.
+`silly-monte-carlo` is a trivial exercise in `monte-carlo` simulation.
 
 ## Installation
 
-We recommend using a virtual environment.
+As prerequisites, you will need git, and a suitable python version. 
 
 ```bash
+# checkout repository.
 git clone git@github.com:jjaemun/silly-monte-carlo.git
+# go to library root.
 cd silly-monte-carlo
-
+# create and activate a python environment.
 python -m venv .env
 source .env/bin/activate
-
+# build an editable install.
 pip install -e .
 ```
 
-The package uses dynamic dependencies through `requirements.txt`, so the editable
-install is sufficient to install the local package and its runtime dependencies.
+The package is set up to dynamically install dependencies through the 
+`requirements.txt` file. The editable install is sufficient to make available 
+the local package and its runtime dependencies.
 
 ## Introduction
 
