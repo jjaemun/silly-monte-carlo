@@ -39,25 +39,34 @@ properties they describe are the following:
 
 class Simulator(abc.abstractmethod):
     
-    # `simulate` is the monte carlo path simulation entry point.
     def simulate(self, s: float, t: float,
                                  seed: Seed = None) -> sample.Sample:
-        # (...) 
 
-    # `mean` computes the theoretical expection over the 
-    # simulation interval in [s, t].
+        # `simulate` is the monte carlo path simulation 
+        #  entry point.
+
+        (...) 
+
     def mean(self, s: float, t: float) -> numpy.ndarray:
-        # (...) 
 
-    # `variance` computes the theoretical dispersion over the 
-    # simulation interval in [s, t].
-    def mean(self, s: float, t: float) -> numpy.ndarray:
-        # (...) 
+        # `mean` computes the theoretical expection over
+        # the simulation interval in [s, t].
 
-    # `variance` computes the theoretical autocovariance matrix
-    # over the simulation interval in [s, t].
+        (...) 
+
+    def variance(self, s: float, t: float) -> numpy.ndarray:
+
+        # `variance` computes the theoretical dispersion 
+        # over the simulation interval in [s, t].
+
+        (...) 
+
     def autocovariance(self, s: float, t: float) -> numpy.ndarray:
-        # (...) 
+
+        # `autocovariance` computes the theoretical 
+        # autocovariance matrix over the interval [s, t].
+
+        (...)
 ```
 
     # `s` and `t` are the simulation interval boundaries. 
