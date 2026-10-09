@@ -2,7 +2,7 @@
 
 
 import abc
-from .seed import Seed
+from .seeding import Seed
 
 
 class Simulator(abc.ABC):

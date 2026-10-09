@@ -2,7 +2,7 @@
 
 
 import numpy
-from . import (check, simulator, sample, seed, timegrid)
+from . import (check, simulator, sample, seeding, timegrid)
 
 
 
@@ -29,7 +29,7 @@ class ArithmeticBrownianMotion(simulator.Simulator):
         self.paths = paths
 
     def simulate(self, s: float, t: float, 
-                       seed: seed.Seed = None) -> sample.Sample:
+                       seed: seeding.Seed = None) -> sample.Sample:
 
         '''  Computes synthetic paths over simulation 
                 period [s, t]. '''
