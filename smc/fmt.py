@@ -39,4 +39,4 @@ def msg(e: err.Err, *args: ...) -> str:
             # If we cannot recognize the error code `e`, simply
             # return a generic message.
 
-            return f'Unknown error code {_!r}.'
+            return f'Unknown error code {e!r}.'
