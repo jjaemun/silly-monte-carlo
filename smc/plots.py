@@ -12,7 +12,7 @@ from typing import Optional
 
 
 # --update.
-pyplot.rcParams.update(**cfg.PLOT_CFG)
+pyplot.rcParams.update(cfg.PLOT_CFG)
 
 
 def show(fig: figure.Figure, *axs: ...):
