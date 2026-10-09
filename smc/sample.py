@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-from .timegrid import Timegrid
+from .timegrid import TimeGrid
 
 import numpy
 from dataclasses import dataclass
