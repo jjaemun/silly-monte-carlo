@@ -3,11 +3,7 @@
 
 from . import check
 
-
 import numpy
-
-
-from typing import ClassVar
 from dataclasses import dataclass
 
 

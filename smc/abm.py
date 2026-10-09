@@ -29,7 +29,7 @@ class ArithmeticBrownianMotion(simulator.Simulator):
         self.paths = paths 
 
     
-    def simulate(self, s: float, t: float) -> ...:
+    def simulate(self, s: float, t: float) -> sample.Sample:
 
         '''  Computes synthetic paths over simulation 
                 period [s, t]. '''
@@ -53,17 +53,17 @@ class ArithmeticBrownianMotion(simulator.Simulator):
         ''' Computes theoretic path of one-time first order 
                 moments over the period [s, t]. '''
 
-        timegrid = numpy.linspace(s, t, self.timesteps)
-        return self.spot + self.mu * timegrid
+        grid = timegrid.TimeGrid(s, t, self.timesteps)
+        return self.spot + self.mu * grid.values
 
 
-    def variance(self, s: float, t: float) -> ...:
+    def variance(self, s: float, t: float) -> ...: 
 
         ''' Returns theoretic dispersion over the 
                 period  [s, t].'''
 
-        timegrid = numpy.linspace(s, t, self.timesteps)
-        return self.sigma * self.sigma * timegrid
+        grid = timegrid.TimeGrid(s, t, self.timesteps)
+        return self.sigma * self.sigma * grid.values
 
 
     def autocovariance(self, s: float, t: float) -> ...:

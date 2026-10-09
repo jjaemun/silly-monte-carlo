@@ -4,8 +4,6 @@
 from .timegrid import Timegrid
 
 import numpy
-
-from typing import ClassVar
 from dataclasses import dataclass
 
 
