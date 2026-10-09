@@ -1,7 +1,6 @@
 [project]
 name = "silly-monte-carlo"
 version = "0.1.0"
-description = "A small Monte Carlo playground for comparing simulated paths against theoretical moments."
 requires-python = ">=3.11"
 dynamic = ["dependencies"]
 
