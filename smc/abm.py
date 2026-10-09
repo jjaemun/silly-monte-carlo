@@ -2,7 +2,7 @@
 
 
 import numpy
-from . import (check, simulator, sample, timegrid)
+from . import (check, simulator, sample, seed, timegrid)
 
 
 
@@ -11,8 +11,8 @@ class ArithmeticBrownianMotion(simulator.Simulator):
     ''' Arithmetic Brownian motion (abm) monte 
             carlo simulator. '''
         
-    def __init__(self, spot: float, mu: float, 
-                       sigma: float, timesteps: int, paths: int):
+    def __init__(self, spot: float, mu: float, sigma: float, 
+                       timesteps: int, paths: int, seed: seed.Seed = None):
         self.spot = spot
         self.mu = mu
         self.sigma = sigma 
@@ -26,9 +26,11 @@ class ArithmeticBrownianMotion(simulator.Simulator):
         check.positive_integer(paths)
 
         self.timesteps = timesteps
-        self.paths = paths 
+        self.paths = paths
 
-    
+        # --priv.
+        self._rng = numpy.random.default_rng(seed)
+
     def simulate(self, s: float, t: float) -> sample.Sample:
 
         '''  Computes synthetic paths over simulation 
@@ -36,7 +38,7 @@ class ArithmeticBrownianMotion(simulator.Simulator):
     
         grid = timegrid.TimeGrid(s, t, self.timesteps)
         gaussians = (numpy.sqrt(grid.increment) 
-                        * numpy.random.normal(size = (self.paths, self.timesteps)))
+                        * self._rng.normal(size = (self.paths, self.timesteps)))
         
         drift = self.mu * grid.increment
         diffusion = self.sigma * gaussians
@@ -54,7 +56,7 @@ class ArithmeticBrownianMotion(simulator.Simulator):
                 moments over the period [s, t]. '''
 
         grid = timegrid.TimeGrid(s, t, self.timesteps)
-        return self.spot + self.mu * grid.values
+        return self.spot + self.mu * (grid.values - s)
 
 
     def variance(self, s: float, t: float) -> ...: 
@@ -63,7 +65,7 @@ class ArithmeticBrownianMotion(simulator.Simulator):
                 period  [s, t].'''
 
         grid = timegrid.TimeGrid(s, t, self.timesteps)
-        return self.sigma * self.sigma * grid.values
+        return self.sigma * self.sigma * (grid.values - s)
 
 
     def autocovariance(self, s: float, t: float) -> ...:
