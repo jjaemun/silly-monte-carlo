@@ -73,8 +73,8 @@ In all methods above `s` and `t` are the simulation interval boundaries.
 And so logically they should be (and we check that they are) ordered 
 such that `s` < `t`.
 
-An intentional design choice is introducing the optional random state 
-management (seeding) in the `simulation` method. There are two reasons for this.
+An intentional design choice was introducing optional seeding in the `simulation` method. 
+There are two reasons for this:
     * allows reproducibility if we do decide to seed the `rng`; and,
     * it signals that we are dealing with random number generation upon 
       calling this function.
