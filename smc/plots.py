@@ -11,10 +11,8 @@ from matplotlib import (pyplot, axes, figure)
 from typing import Optional
 
 
-try:
-    pyplot.rcParams.update(cfg.TRY_PLOT_CFG)
-except:
-    pyplot.rcParams.update(cfg.PLOT_CFG)
+# --update.
+pyplot.rcParams.update(cfg.PLOT_CFG)
 
 
 def show(fig: figure.Figure, *axs: ...):
@@ -90,7 +88,7 @@ def mean(sim: ..., sampled: sample.Sample, s: float,
 def variance(sim: ..., sampled: sample.Sample, s: float, 
                        t: float, ax: Optional[axes.Axes] = None):
 
-    ''' plots empirical and theoretic mean paths. '''
+    ''' Plots empirical and theoretic variance paths. '''
 
     if (ax) is None:
         (_, ax) = pyplot.subplots()
