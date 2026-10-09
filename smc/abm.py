@@ -72,5 +72,9 @@ class ArithmeticBrownianMotion(simulator.Simulator):
 
         ''' Returns theoretic mixed second order central  
                 moments on times s, t. '''
+        
+        grid = timegrid.TimeGrid(s, t, self.timesteps)
+        mscm = (self.sigma * self.sigma 
+                    * numpy.minimum.outer(grid.values - s, grid.values - s))
 
-        return self.sigma * self.sigma * min(s, t)
+        return mscm
