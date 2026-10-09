@@ -2,7 +2,7 @@
 
 
 import numpy
-from . import (check, simulator)
+from . import (check, simulator, sample, timegrid)
 
 
 
@@ -33,18 +33,19 @@ class ArithmeticBrownianMotion(simulator.Simulator):
 
         '''  Computes synthetic paths over simulation 
                 period [s, t]. '''
-
-        increment = (t - s) / self.timesteps
-        gaussians = (numpy.sqrt(increment) 
+    
+        grid = timegrid.TimeGrid(s, t, self.timesteps)
+        gaussians = (numpy.sqrt(grid.increment) 
                         * numpy.random.normal(size = (self.paths, self.timesteps)))
         
-        drift = self.mu * increment
+        drift = self.mu * grid.increment
         diffusion = self.sigma * gaussians
 
         ds = numpy.concatenate([numpy.full((self.paths, 1), self.spot), 
                                 drift + diffusion], axis=1)
 
-        return numpy.cumsum(ds, axis = 1)
+        return sample.Sample(grid = grid, 
+                             sims = numpy.cumsum(ds, axis = 1))
 
 
     def mean(self, s: float, t: float) -> ...:

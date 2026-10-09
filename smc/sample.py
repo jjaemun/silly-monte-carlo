@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
+from .timegrid import Timegrid
+
 import numpy
 
 from typing import ClassVar
@@ -12,7 +14,7 @@ class Sample(object):
 
     ''' Result type for a monte carlo simulation. '''
     
-    grid: numpy.ndarray 
+    grid: TimeGrid
     sims: numpy.ndarray
 
     # Notes
