@@ -37,7 +37,3 @@ class TimeGrid:
     @property
     def values(self):
         return numpy.linspace(self.s, self.t, self.timesteps + 1)
-
-    @property
-    def elapsed(self):
-        return self.values - self.s
