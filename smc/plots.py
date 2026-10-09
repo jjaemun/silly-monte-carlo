@@ -76,7 +76,6 @@ def mean(sim: ..., sampled: sample.Sample, s: float,
     if (ax) is None:
         (_, ax) = pyplot.subplots()
 
-
     ax.plot(sampled.grid.values, sampled.mean, 
             label = 'empirical', **cfg.LINESTYLE)
     ax.plot(sampled.grid.values, sim.mean(s, t), 
@@ -95,7 +94,6 @@ def variance(sim: ..., sampled: sample.Sample, s: float,
 
     if (ax) is None:
         (_, ax) = pyplot.subplots()
-
 
     ax.plot(sampled.grid.values, sampled.variance, 
             label = 'empirical', **cfg.LINESTYLE)
