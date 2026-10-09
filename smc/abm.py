@@ -12,7 +12,7 @@ class ArithmeticBrownianMotion(simulator.Simulator):
             carlo simulator. '''
         
     def __init__(self, spot: float, mu: float, sigma: float, 
-                       timesteps: int, paths: int, seed: seed.Seed = None):
+                       timesteps: int, paths: int):
         self.spot = spot
         self.mu = mu
         self.sigma = sigma 
@@ -28,17 +28,17 @@ class ArithmeticBrownianMotion(simulator.Simulator):
         self.timesteps = timesteps
         self.paths = paths
 
-        # --priv.
-        self._rng = numpy.random.default_rng(seed)
-
-    def simulate(self, s: float, t: float) -> sample.Sample:
+    def simulate(self, s: float, t: float, 
+                       seed: seed.Seed = None) -> sample.Sample:
 
         '''  Computes synthetic paths over simulation 
                 period [s, t]. '''
-    
+
+        rng = numpy.random.default_rng(seed)
+
         grid = timegrid.TimeGrid(s, t, self.timesteps)
         gaussians = (numpy.sqrt(grid.increment) 
-                        * self._rng.normal(size = (self.paths, self.timesteps)))
+                        * rng.normal(size = (self.paths, self.timesteps)))
         
         drift = self.mu * grid.increment
         diffusion = self.sigma * gaussians

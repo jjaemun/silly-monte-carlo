@@ -2,6 +2,7 @@
 
 
 import abc
+from .seed import Seed
 
 
 class Simulator(abc.ABC):
@@ -10,7 +11,8 @@ class Simulator(abc.ABC):
             sde simulations.'''
 
     @abc.abstractmethod
-    def simulate(self, s: float, t: float) -> ...:
+    def simulate(self, s: float, t: float, 
+                                 seed: Seed = None) -> ...:
 
         ''' Computes synthetic paths over simulation 
                 period [s, t].'''
