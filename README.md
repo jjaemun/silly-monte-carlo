@@ -37,7 +37,7 @@ properties they describe are the following:
 
 ```python
 
-class Simulator(abc.abstractmethod):
+class Simulator(abc.ABC):
     
     def simulate(self, s: float, t: float,
                                  seed: Seed = None) -> sample.Sample:

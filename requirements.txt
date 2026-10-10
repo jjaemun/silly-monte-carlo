@@ -8,5 +8,4 @@ packaging==26.3
 pillow==12.3.0
 pyparsing==3.3.3
 python-dateutil==2.9.0.post0
--e git+ssh://git@github.com/jjaemun/silly-monte-carlo.git@413057f7d22f868a1989253885b8136432406ea1#egg=silly_monte_carlo
 six==1.17.0
